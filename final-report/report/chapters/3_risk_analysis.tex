@@ -1,0 +1,127 @@
+\section{Risk analysis}
+\label{sec:risk-analysis}
+
+\subsection{Preliminary Qualitative Analysis}
+
+The complete summary of results can be found in the document  \url{SecRAM-worksheet.xlsx} submitted as integral part of the current report.
+
+As a first step we identified the primary assets and also assessed their impact as can be seen in parts 1.1 and 1.2 of the \url{SecRAM-worksheet.xlsx} document. 
+
+Out of all the primary assets we identified the most critical one for the application of the smart working procedure in the court are:
+
+\begin{itemize}
+    \item the VPN service and associated credentials;
+    \item the certified email service (\textit{PEC}) and associated credentials.
+\end{itemize}
+
+At step 1.3 of the attached document document we identified the supporting assets linked to every primary asset, but in particular we found the following ones related to the previous supporting assets:
+
+\begin{itemize}
+    \item personnel's PCs;
+    \item VPN server(s);
+    \item personnel;
+    \item server room(s);
+    \item network devices.
+\end{itemize}
+
+After identifying these ones we proceeded identifying, in step 2.1, possible threats for every supporting asset; out of all the possible vulnerabilities the most important ones are:
+
+\begin{itemize}
+    \item partial or total destruction, for all of the supporting assets listed before;
+    \item compromise of information, for all of the supporting assets listed before;
+    \item theft, for all of the supporting assets listed before except for the server room (s).
+\end{itemize}
+
+For each vulnerability we also identified related threats and we will report here the most relevant one.
+
+For the compromise of information we identified:
+
+\begin{itemize}
+    \item non-adherence to security practices;
+    \item firmware or software vulnerability.
+\end{itemize}
+
+For partial or total destruction we identified that the threats can come in different forms depending on the asset, but they can all be classified into the following groups:
+
+\begin{itemize}
+    \item accidental damage, either man-made or not;
+    \item sabotage;
+    \item natural disaster.
+\end{itemize}
+
+The threats reported above are also those with the highest risk level, as can be seen in the step 3.2 of the attached document.
+
+After this step, we concluded that while most supporting assets did have a high level of risk, some vulnerabilities in them (some in the personnel PCs, but also in the judicial software server and the power supply) were presenting a risk level low enough to justify not adding controls to them.
+
+In step 4, for the rest of the vulnerabilities, we identified some controls that can be put into place in order to reduce the risk level of the all the threats identified; in particular the most immediate controls we proposed can be split into the following categories:
+
+\begin{itemize}
+    \item physical restrictions, such as guards locked doors;
+    \item networking structure enhancement, such as better isolation of VLANs and better disposition of the VPN server;
+    \item keeping software up to date.
+\end{itemize}
+
+In step 5 we identified the residual risk level for each primary asset which is \textit{"Medium"} for every single primary asset, having a scale of three risk levels: \textit{"High"}, \textit{"Medium"}, \textit{"Low"}.
+
+\subsection{Quantitative Analysis}
+
+The complete summary of results can be found in the document \url{CVSS-worksheet.xlsx} submitted as integral part of the current report.\footnote{Note: the CVSS-worksheet file steps refers to all systems and CIDR based on their new mappings, as anticipated in section 2. This is in order to avoid confusions. A separate tab, \url{Annex-VLANList}, is provided in the Excel file in order to have a lookup table for old VLAN IDs/CIDRs.}
+
+At Step 1 we identified the vulnerabilities present in the network before the risk analysis and have identified the key systems. They are summarized in \url{CVSS-worksheet.xlsx}, tab \url{Step1}.
+
+First, we derived the most important systems for each VLAN. Then, for each system, we assigned a unique ID and identified key vulnerabilities. The CVSS column refers to the highest identified vulnerability on that system, as a row may contain two or more vulnerabilities. Furthermore, we chose to operate only on vulnerabilities rated CVSS 4 or higher, in order to better focus on the key issues that have to be addressed promptly. Among the systems we analyzed, we believe the most important are 11B and 111F (the judicial process servers), although there exist some PCs with CVSS vulnerabilities rated 10 (mainly, those featuring EOL operating systems). Throughout the system, finally, other key vulnerabilities usually fall down on expired TLS certificates and insecure ciphers.
+
+At Step 2 we have identified the power of attackers that are consistent with our key stakeholder (see section 1). In our scenario, our priority is to secure all endpoints of the judicial process server from external network attacks. We believe that, in 2020, social engineering is fundamental but more often than not the first door hackers want to open is the remote one\cite{ferrarella_2018}\cite{salerno_2018}. Therefore, in our scenario, we decided to prioritize most remote attacks. This translates in focusing on remote vulnerabilities to the judicial process server (systems \url{111C}, \url{111D}, \url{111E}, \url{111F}). In order to get an acceptable security level, all PCs in the system must also be updated to the latest OS level patches (systems \url{19C}, \url{1A} in particular). However, given the state of the network, our recommendation is to also carry over as many mitigations possible, by checking the results of the next step.
+
+While online attacks may be imminent, particular attention still must be given to potential mole or infiltration attacks\cite{online_2011}. In fact, in our step 3.1 we calculated the overall impact and likelihood for selected cyber attacks scenarios, and potential vectors deriving by both fully remote attacks or locally assisted attacks. Data is reported in Table \ref{tab:step3} for the key assets. Full details are available in \url{CVSS-worksheet.xlsx}. 
+
+\begin{center}
+    \label{tab:step3}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Component & Impact & Likelihood & Risk (1 year)
+    \\
+    \hline
+    External firewall     & € 8000      & \verb=0.14= & € 2.174.82    
+    \\
+    \hline
+    Judicial Software Server     & € 10018000       & \verb=0.40=       &  € 70.529.267,78 
+    \\
+    \hline
+    VPN Server     &  € 11.950.750,00        & \verb=0.51=       &  € 80.043.484,77 
+    \\
+    \hline
+    Log server     &  € 12.400,00        & \verb=0.10=       &  € 1.064,62       \\
+    \hline
+    Clerk's PC     &  € 9.300,00        & \verb=0.40=       &  € 1.557.012,34 
+    \\
+    \hline
+    \end{tabular}
+\end{center}
+
+Finally, at step 4 we identified the total costs of our proposed countermeasures (for € 176.400,00 in total). We used several sources to compile this information\cite{avfirewalls}\cite{basics_2020}\cite{limited}. Additionally, we measured the residual likelihood and therefore the residual risk after we have applied the countermeasure. This was done using the amortized costs for one year. They are finally listed in Table \ref{tab:step4} with the related costs side.
+
+\begin{center}
+    \label{tab:step4}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Component & Residual Likelihood & Residual Risk \\
+    \hline
+    External firewall     & \verb=0.14=       &  € 915,71        \\
+    \hline
+    Judicial software server     & \verb=0.40=       &  € 20.642.712,52
+    \\
+    \hline
+    VPN Server     & \verb=0.51=       & € 17.152.175,31
+    \\
+    \hline
+    Log server     & \verb=0.10=       & € 266,16
+    \\
+    \hline
+    Clerk's PC     & \verb=0.40=       & € 79.846,79
+    \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\clearpage

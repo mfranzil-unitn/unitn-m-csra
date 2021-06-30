@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % per definizione layout
+
+\usepackage{titlesec}
+\usepackage{graphicx}
+%\usepackage{ifthen}
+
+\usepackage{epsfig}
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+%\usepackage[a-1b]{pdfx}
+\usepackage[pdfa]{hyperref}
+
+\usepackage{url}
+\usepackage{soul}
+
+\usepackage{lscape}
+
+% titoli grandi
+\titleformat{\section}{\normalfont\LARGE\bfseries}{\thesection}{1em}{}
+
+% titolo teorema
+\newtheorem{definition}{Definition}
+
+\title{\huge\textbf{Cyber Security Risk Assessment\\A.Y. 2020-2021}\\\medskip\Large\textbf{Final Report - Group 8\\Introduction to Smart Working in a Court}}
+\author{Claudio Facchinetti \texttt{<claudio.facchinetti@studenti.unitn.it>}\\
+Matteo Franzil \texttt{<matteo.franzil@studenti.unitn.it>}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\begingroup
+  
+\input{chapters/0_executive_summary}
+\input{chapters/1_target_evaluation}
+\input{chapters/2_summary_findings}
+\input{chapters/3_risk_analysis}
+\input{chapters/4_annex}
+
+\endgroup
+
+\addcontentsline{toc}{section}{References}
+
+\bibliographystyle{IEEEtran-sorted-tt}
+\bibliography{biblio}
+
+\end{document}
